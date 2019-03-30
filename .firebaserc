@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "karix-signup-form": "karix-sign-up-form",
+    "default": "karix-sign-up-form"
+  }
+}

@@ -1,0 +1,66 @@
+<div class="jumbotron jumbotron-fluid bg-dark">
+  
+  <div class="jumbotron-background">
+    <img src="https://placeimg.com/2000/1000/nature" class="blur ">
+  </div>
+
+  <div class="container text-white">
+  	<div class="row pl-4">
+  		<div class="col-md-6 bg-white">
+  			<form  [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+				  <div class="row p-4">
+				    <div class="col-12 my-2 ">
+				      <input type="text" class="form-control border-top-0 border-left-0 border-right-0" placeholder="First name" formControlName="name"  [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+				      <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                  <div *ngIf="f.name.errors.required">Name is required</div>
+              </div>
+				    </div>
+				    <div class="col-12 my-2">
+				      <input type="text" class="form-control border-top-0 border-left-0 border-right-0" placeholder="Email" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+				      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                  <div *ngIf="f.email.errors.required">Email is required</div>
+                  <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+              </div>
+				    </div>
+				    <div class="col-12 my-2">
+				      <input type="text" class="form-control border-top-0 border-left-0 border-right-0" placeholder="Password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+				      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+				      	<div *ngIf="f.password.errors.required">Password is required</div>
+				      	<div *ngIf="f.password.errors.minlength">Password must be atleast 6 characters</div>
+				      </div>
+				    </div>
+				    <div class="col-12 my-2">
+				      <!-- <input type="text" class="form-control border-top-0 border-left-0 border-right-0" placeholder="Date Of Birth" formControlName="dob" [ngClass]="{ 'is-invalid': submitted && f.dob.errors }"> -->
+              <input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="Enter Date" formControlName="dob" class="form-control border-top-0 border-left-0 border-right-0" [ngClass]="{ 'is-invalid': submitted && f.dob.errors }">
+              <owl-date-time #dt1 [pickerType]="'calendar'" [startView]="'month'"></owl-date-time> 
+				      <div *ngIf="submitted && f.dob.errors" class="invalid-feedback">
+				      	<div *ngIf="f.dob.errors.required">DOB is required</div>
+				      </div>
+				    </div>
+				  </div>
+				  <div class="col-12 my-2 form-group my-4 text-center">
+				  	<button class="btn btn-lg btn-primary btn-submit cursor-pointer">Sign Up</button>
+				  	
+				  </div>
+				</form>
+  			
+  		</div>
+  		<div class="col-md-6 p-0">
+  			<div class="img-conatiner">
+  				<img src="../assets/image/karix.jpg">
+  				
+  			</div>
+  			
+  		</div>
+  		
+  	</div>
+
+
+
+  </div>
+  <!-- /.container -->
+  
+ 
+</div>
+
+
