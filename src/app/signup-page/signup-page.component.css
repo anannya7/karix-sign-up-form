@@ -2,6 +2,7 @@
 .jumbotron {
   position:relative;
   overflow:hidden;
+  height: 100vh;
 }
 
 .jumbotron .container {
