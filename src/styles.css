@@ -1,3 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
+/*css For owldatetime picker*/
 @import "~ng-pick-datetime/assets/style/picker.min.css";
+
+/* css For Toaster Notification */
 @import '~ngx-toastr/toastr.css';

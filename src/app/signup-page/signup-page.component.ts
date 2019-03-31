@@ -29,7 +29,7 @@ export class SignupPageComponent implements OnInit {
   onSubmit(){
   	this.submitted = true
   	if(this.submitted){
-  		if(!this.registerForm.valid){
+  		if(!this.registerForm.valid){ //return error messages if submitted form is not valid
   		
 	  		return
 
@@ -41,6 +41,7 @@ export class SignupPageComponent implements OnInit {
     console.log('User Name: '+this.registerForm.controls['name'].value,'\nUser Email:'+this.registerForm.controls['email'].value,'\nUser Date of Birth:'+this.registerForm.controls['dob'].value);
     this.callResetForm();
   }
+  //Method to reset the signup form make submitted false
   callResetForm(){
   	this.submitted = false;
   	this.registerForm.reset();
