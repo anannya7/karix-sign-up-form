@@ -44,3 +44,11 @@ input::placeholder {
     border-radius: 17px;
     width: 100%;
 }
+.img-responsive{
+  height: 100%;
+  width: 100%;
+}
+input:focus{
+    outline: none;
+    box-shadow: none;
+}

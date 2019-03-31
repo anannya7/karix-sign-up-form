@@ -5,7 +5,7 @@
   </div>
 
   <div class="container text-white">
-  	<div class="row pl-4">
+  	<div class="row">
   		<div class="col-md-6 bg-white">
   			<form  [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 				  <div class="row p-4">
@@ -13,7 +13,7 @@
 				      <input type="text" class="form-control border-top-0 border-left-0 border-right-0" placeholder="First name" formControlName="name"  [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
 				      <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
                   <div *ngIf="f.name.errors.required">Name is required</div>
-                  <div *ngIf="f.name.errors.maxlength">Name must be atmost 20 characters</div>
+                  <div *ngIf="f.name.errors.maxlength">Name must be maximum 20 characters long</div>
               </div>
 				    </div>
 				    <div class="col-12 my-2">
@@ -24,7 +24,7 @@
               </div>
 				    </div>
 				    <div class="col-12 my-2">
-				      <input type="text" class="form-control border-top-0 border-left-0 border-right-0" placeholder="Password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+				      <input type="password" class="form-control border-top-0 border-left-0 border-right-0" placeholder="Password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
 				      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
 				      	<div *ngIf="f.password.errors.required">Password is required</div>
 				      	<div *ngIf="f.password.errors.minlength">Password must be atleast 6 characters</div>
@@ -48,7 +48,7 @@
   		</div>
   		<div class="col-md-6 p-0">
   			<div class="img-conatiner">
-  				<img src="../assets/image/karix.jpg">
+  				<img src="../assets/image/karix.jpg" class="img-responsive">
   				
   			</div>
   			

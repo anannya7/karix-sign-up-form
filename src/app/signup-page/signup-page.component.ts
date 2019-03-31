@@ -15,7 +15,7 @@ export class SignupPageComponent implements OnInit {
 
   ngOnInit() {
   	this.registerForm = this.formBuilder.group({
-  		name: ['',Validators.required],
+  		name: ['',[Validators.required,Validators.maxLength(20)]],
   		email: ['',Validators.required],
   		password: ['',[Validators.required,Validators.minLength(6)]],
   		dob: ['',Validators.required],
@@ -28,15 +28,22 @@ export class SignupPageComponent implements OnInit {
   //method calls after click on submit button  
   onSubmit(){
   	this.submitted = true
-  	if(!this.registerForm.valid){
+  	if(this.submitted){
+  		if(!this.registerForm.valid){
   		
-  		return
+	  		return
 
+	  	}
   	}
   	//Toaster for notification
   	this.toastr.success('Your Form Has been Submitted Successfully!', 'Success!',
     {timeOut: 2000});; 
-    console.log('User Name: '+this.registerForm.controls['name'].value,'\nhello');
+    console.log('User Name: '+this.registerForm.controls['name'].value,'\nUser Email:'+this.registerForm.controls['email'].value,'\nUser Date of Birth:'+this.registerForm.controls['dob'].value);
+    this.callResetForm();
+  }
+  callResetForm(){
+  	this.submitted = false;
+  	this.registerForm.reset();
   }
 
 }
