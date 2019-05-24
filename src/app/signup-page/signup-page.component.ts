@@ -14,6 +14,38 @@ import { AppService } from '../app.service';
 export class SignupPageComponent implements OnInit {
   registerForm:FormGroup;
   submitted = false;
+  chartOptions = {
+    scales: {
+        yAxes: [{
+              ticks: {
+                  max: 3.5,
+                  min: 0,
+                  stepSize: 0.5
+              }
+          }]
+      },
+      responsive: true, // THIS WILL MAKE THE CHART RESPONSIVE (VISIBLE IN ANY DEVICE).
+      maintainAspectRatio: true
+          
+    }
+    labels =  ['1hr','2hr','3hr','4hr','5hr','6hr','7hr','8hr','9hr','10hr','11hr','12hr','13hr','14hr','15hr','16hr','17hr','18hr','19hr','20hr','21hr','22hr','23hr','24hr'];
+
+  // STATIC DATA FOR THE CHART IN JSON FORMAT.
+  chartData = [
+    {
+      label: 'Message Count',
+      data: [0,0] 
+    }
+  ];
+
+  // CHART COLOR.
+  colors = [
+    { // Quiz Bar label.
+      backgroundColor: 'rgba(255,255,255, 0.9)'
+    },
+    
+  ]
+  
 
   constructor(private formBuilder: FormBuilder,private toastr: ToastrService, private httpClient: HttpClient , private appservice: AppService) { }
 
@@ -23,8 +55,8 @@ export class SignupPageComponent implements OnInit {
   		email: ['',[Validators.required,Validators.email]],
   		password: ['',[Validators.required,Validators.minLength(6)]],
   		dob: ['',Validators.required],
-      uid: ['',Validators.required],
-      token: ['',Validators.required],
+      uid: ['6e9d22a6-2e74-439e-888b-721fa1312251',Validators.required],
+      token: ['e8e7f546-b60d-4efd-9717-9766f4f087b9',Validators.required],
 
 
   	});
@@ -34,6 +66,7 @@ export class SignupPageComponent implements OnInit {
 
 
   messageList;
+  temp_val;
   //method calls after click on submit button  
   onSubmit(){
   		if(!this.registerForm.valid){ //return error messages if submitted form is not valid
@@ -49,6 +82,7 @@ export class SignupPageComponent implements OnInit {
 
             console.log(res);
             this.messageList = res['objects'];
+            this.temp_val = this.messageList;
             this.submitted = true
 
            },err=>{
@@ -68,6 +102,21 @@ export class SignupPageComponent implements OnInit {
   	this.submitted = false;
 
   	this.registerForm.reset();
+  }
+  show_graph:boolean = false;
+  showGraph(){
+    this.show_graph = !this.show_graph
+  }
+  filterColumDropdownChange(value){
+    this.messageList =  this.temp_val;
+    if(value != 'all'){
+      const new_val = this.messageList.filter(msg =>{
+        return msg.status === value
+      });
+      this.messageList = new_val;
+    }
+
+
   }
 
 }

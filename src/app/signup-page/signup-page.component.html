@@ -72,8 +72,25 @@
   		
   	</div>
   	<div class="row" *ngIf="submitted">
-  		<div class="col-12">
-  			<table class="table table-responsive">
+  		<div class="col-6">
+  			<label>Filter By-</label>
+  			<select class="filterSelect" (change)="filterColumDropdownChange($event.target.value)">
+        <option value="all" selected><span class="capitalize" >All</span></option>
+        <option value="read"><span class="capitalize">Read</span></option>
+        <option value="queued"><span class="capitalize">Queued</span></option>
+        <option value="sent"><span class="capitalize">Sent</span></option>
+        <option value="failed"><span class="capitalize">Failed</span></option>
+        <option value="delivered"><span class="capitalize">Delivered</span></option>
+        <option value="rejected"><span class="capitalize">Rejected</span></option>
+
+      </select>
+  		</div>
+  		<div class="col-6">
+  			<button class="btn btn-info float-lg-right mb-4" (click)="showGraph()" *ngIf="!show_graph">show graph</button>
+  			<button class="btn btn-info float-lg-right mb-4" (click)="showGraph()" *ngIf="show_graph">Hide Graph</button>
+  		</div>
+  		<div class="col-12" *ngIf="!show_graph">
+  			<table class="table table-responsive" *ngIf="messageList && messageList.length > 0">
 				  <thead class="thead-dark">
 				    <tr>
 				      <th scope="col">#</th>
@@ -91,14 +108,31 @@
               <td>{{ item.uid }}</td>
 				      <td>{{ item.source }}</td>
 				      <td>{{ item.direction }}</td>
-				      <td><ng-container *ngIf="item.sent_time">{{ item.sent_time }}</ng-container><ng-container *ngIf="!item.sent_time">0</ng-container></td>
+				      <td><ng-container *ngIf="item.sent_time">{{ item.sent_time  | date:'dd/MM/yyyy - h:mm a'}}</ng-container><ng-container *ngIf="!item.sent_time">0</ng-container></td>
 				      <td>{{ item.total_cost }}</td>
 				      <td>{{ item.status }}</td>
 				    </tr>
 
 				  </tbody>
 				</table>
+				<div class="row">
+					<div class="col-12 bg-white text-center" *ngIf="messageList && messageList.length ==0">
+						<p class="text-danger py-5">No Data Found......</p>
+					</div>
+				</div>
   			
+  		</div>
+  		<div class="col-12 bg-white" *ngIf="show_graph">
+  			<canvas
+				      baseChart
+				      [chartType]="'bar'"
+				      [datasets]="chartData"
+				      [labels]="labels"
+				      [options]="chartOptions"
+				      [legend]="true"
+				      [colors]="colors"
+				      (chartClick)="onChartClick($event)">
+				    </canvas>
   		</div>
   	</div>
 

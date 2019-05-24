@@ -10,6 +10,7 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime'; /
 import { ToastrModule } from 'ngx-toastr'; // For Showing notification
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TableViewComponent } from './table-view/table-view.component';
+import { ChartsModule } from 'ng2-charts';
 
 
 
@@ -28,7 +29,8 @@ import { TableViewComponent } from './table-view/table-view.component';
     OwlNativeDateTimeModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    ChartsModule
   ],
 
   bootstrap: [AppComponent]
