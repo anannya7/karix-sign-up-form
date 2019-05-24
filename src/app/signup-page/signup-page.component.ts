@@ -42,7 +42,7 @@ export class SignupPageComponent implements OnInit {
 
 	  	}
       else{
-        debugger
+        
 
          this.appservice.getData(this.registerForm.value.uid,this.registerForm.value.token).subscribe(
            res=>{

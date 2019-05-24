@@ -55,10 +55,5 @@ input:focus{
 }
 .table{
   background: white;
-}
-tbody{
-    height: 100vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-    display: block;
+  max-height: 100vh;
 }
