@@ -5,7 +5,7 @@
   </div>
   
   <div class="container text-white">
-  	<div class="row">
+  	<div class="row" *ngIf="!submitted">
   		<div class="col-md-6 bg-white">
   			<form  [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 				  <div class="row p-4">
@@ -38,6 +38,22 @@
 				      	<div *ngIf="f.dob.errors.required">DOB is required</div>
 				      </div>
 				    </div>
+				    <div class="col-12 my-2 ">
+				      <input type="text" class="form-control border-top-0 border-left-0 border-right-0" placeholder="User Id" formControlName="uid"  [ngClass]="{ 'is-invalid': submitted && f.uid.errors }">
+				      <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                  <div *ngIf="f.uid.errors.required">UID is required</div>
+                  
+              </div>
+				    </div>
+				    <div class="col-12 my-2 ">
+				      <input type="text" class="form-control border-top-0 border-left-0 border-right-0" placeholder="Your Token" formControlName="token"  [ngClass]="{ 'is-invalid': submitted && f.token.errors }">
+				      <div *ngIf="submitted && f.token.errors" class="invalid-feedback">
+                  <div *ngIf="f.token.errors.required">Token is required</div>
+                  
+              </div>
+				    </div>
+
+
 				  </div>
 				  <div class="col-12 my-2 form-group my-4 text-center">
 				  	<button class="btn btn-lg btn-primary btn-submit cursor-pointer">Sign Up</button>
@@ -54,6 +70,36 @@
   			
   		</div>
   		
+  	</div>
+  	<div class="row" *ngIf="submitted">
+  		<div class="col-12">
+  			<table class="table">
+				  <thead class="thead-dark">
+				    <tr>
+				      <th scope="col">#</th>
+				      <th scope="col">UID</th>
+				      <th scope="col">SOURCE</th>
+				      <th scope="col">DIRECTION</th>
+				      <th scope="col">SENT TIME</th>
+				      <th scope="col">TOTAL COST</th>
+				      <th scope="col">STATUS</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr *ngFor="let item of messageList ; let i = index">
+				    	<td>{{ i + 1 }}</td>
+              <td>{{ item.uid }}</td>
+				      <td>{{ item.source }}</td>
+				      <td>{{ item.direction }}</td>
+				      <td><ng-container *ngIf="item.sent_time">{{ item.sent_time }}</ng-container><ng-container *ngIf="!item.sent_time">0</ng-container></td>
+				      <td>{{ item.total_cost }}</td>
+				      <td>{{ item.status }}</td>
+				    </tr>
+
+				  </tbody>
+				</table>
+  			
+  		</div>
   	</div>
 
   </div>
