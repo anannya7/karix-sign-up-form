@@ -18,9 +18,13 @@ export class SignupPageComponent implements OnInit {
     scales: {
         yAxes: [{
               ticks: {
-                  max: 3.5,
-                  min: 0,
-                  stepSize: 0.5
+                  beginAtZero: true,
+                 userCallback: function(label, index, labels) {
+                   if (Math.floor(label) === label) {
+                     return label;
+                   }
+
+                 },
               }
           }]
       },
@@ -34,8 +38,8 @@ export class SignupPageComponent implements OnInit {
   chartData = [
     {
       label: 'Message Count',
-      data: [0,0] 
-    }
+      data: [0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 ,0 , 0 , 0 ,0 , 0 , 0 ] 
+    } 
   ];
 
   // CHART COLOR.
@@ -61,6 +65,7 @@ export class SignupPageComponent implements OnInit {
 
   	});
   }
+
   // convenience getter for easy access to form fields
     get f() { return this.registerForm.controls; }
 
@@ -106,6 +111,7 @@ export class SignupPageComponent implements OnInit {
   show_graph:boolean = false;
   showGraph(){
     this.show_graph = !this.show_graph
+    this.callChartData();//Method to initiate chart values
   }
   filterColumDropdownChange(value){
     this.messageList =  this.temp_val;
@@ -115,6 +121,28 @@ export class SignupPageComponent implements OnInit {
       });
       this.messageList = new_val;
     }
+
+
+  }
+  callChartData(){
+    var hrJson = {'0': 0, '1': 0, '2': 0, '3':0, '4': 0, '5': 0, '6':0, '7': 0, '8': 0, '9':0, '10': 0, '11': 0, '12':0, '13': 0, '14': 0, '15':0, '16':0, '17': 0, '18': 0, '19':0, '20':0, '21': 0, '22': 0, '23':0}
+
+
+    for(let i=0; i< this.messageList.length; i++){
+        if( this.messageList[i].sent_time != null){
+            var hr = (new Date(( this.messageList[i].sent_time))).getHours();
+            hrJson[hr] += 1;
+        }
+    }
+    var y_arr = Object.values(hrJson);
+    console.log(y_arr);
+
+    
+    this.chartData = [
+    {
+      label: 'Message Count',
+      data: y_arr 
+    }  ]
 
 
   }

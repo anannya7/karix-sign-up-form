@@ -57,3 +57,6 @@ input:focus{
   background: white;
   max-height: 100vh;
 }
+.bg-danger {
+    background-color: #dacccd!important;
+}
