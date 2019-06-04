@@ -9,7 +9,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime'; //For Showing Date Calander
 import { ToastrModule } from 'ngx-toastr'; // For Showing notification
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { TableViewComponent } from './table-view/table-view.component';
 import { ChartsModule } from 'ng2-charts';
 
 
@@ -19,7 +18,6 @@ import { ChartsModule } from 'ng2-charts';
   declarations: [
     AppComponent,
     SignupPageComponent,
-    TableViewComponent
   ],
   imports: [
     BrowserModule,
